@@ -24,16 +24,5 @@ app.use("/api/likes", likeRouter);
 app.use("/api/friends", friendshipRouter);
 app.use("/api/otp", otpRouter);
 
-// Global error handler
-app.use(appLevelErrorHandlerMiddleware);
-import { connectToDb } from "./src/config/db.js";
-
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, async () => {
-  await connectToDb();
-  console.log(`Server is running on port ${PORT}`);
-});
-
 
 export default app;
