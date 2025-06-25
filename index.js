@@ -22,7 +22,12 @@ const app = express();
 app.use(cookieParser());
 app.use(express.json());
 
-// Routes
+// Root route (to avoid "Cannot GET /")
+app.get("/", (req, res) => {
+  res.send("🚀 Social Media Backend API is running!");
+});
+
+// Feature Routes
 app.use("/api/users", userRouter);
 app.use("/api/posts", postRouter);
 app.use("/api/comments", commentRouter);
@@ -39,5 +44,5 @@ const PORT = process.env.PORT || 3000;
 // Start server and connect to DB
 app.listen(PORT, async () => {
   await connectToDb(); // Ensure MongoDB connection before starting
-  console.log(`Server is running on port ${PORT}`);
+  console.log(` Server is running on port ${PORT}`);
 });
